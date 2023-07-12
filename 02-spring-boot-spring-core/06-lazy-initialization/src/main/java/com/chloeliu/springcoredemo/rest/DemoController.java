@@ -18,7 +18,8 @@ public class DemoController {
     //to specify one of the beans as our injection
     //@Qualifier has higher priority than @Primary
     @Autowired
-    public DemoController(@Qualifier("baseballCoach") Coach theCoach) {
+    public DemoController(@Qualifier("cricketCoach") Coach theCoach) {
+        System.out.println("In constructor: " + getClass().getSimpleName());
         myCoach = theCoach;
     }
 

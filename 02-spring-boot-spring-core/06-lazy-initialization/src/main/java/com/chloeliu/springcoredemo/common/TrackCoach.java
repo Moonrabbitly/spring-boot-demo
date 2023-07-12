@@ -1,5 +1,6 @@
 package com.chloeliu.springcoredemo.common;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
@@ -8,8 +9,13 @@ import org.springframework.stereotype.Component;
 //more than one 'primary' bean found among candidates: [baseballCoach, cricketCoach, tennisCoach, trackCoach]
 //@Qualifier has higher priority than @Primary
 @Component
-@Primary
+//@Primary
+@Lazy
 public class TrackCoach implements Coach {
+
+    public TrackCoach() {
+        System.out.println("In constructor: " + getClass().getSimpleName());
+    }
     @Override
     public String getDailyWorkout() {
         return "Run a hard 5k! :)";
