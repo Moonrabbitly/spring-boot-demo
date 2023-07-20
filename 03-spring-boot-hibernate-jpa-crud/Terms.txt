@@ -1,0 +1,6 @@
+DAO - Date Access Object
+
+JPA - Java Persistence API
+
+JDBC - Java Database Connnective
+
