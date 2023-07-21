@@ -1,6 +1,18 @@
 DAO - Date Access Object
+The DAO interface serves as an abstraction or contract for accessing the data source. 
+It defines a set of methods that represent CRUD (Create, Read, Update, Delete) operations and other data access operations that need to be performed on the data source. 
+The actual implementation of these methods can vary depending on the data source (e.g., relational database, NoSQL database, file system).
+
+Entity Manager
+The EntityManager is a central interface in Java Persistence API (JPA), 
+which provides an abstraction for managing the lifecycle of entities in a JPA-based application. 
+It is part of the JPA specification and is used to interact with the underlying relational database and perform various database operations.
+
+JDBC - Java Database Connnective
 
 JPA - Java Persistence API
 
-JDBC - Java Database Connnective
+JPQL - JPA Query Language
+
+
 
