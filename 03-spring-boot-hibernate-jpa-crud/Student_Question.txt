@@ -1,0 +1,30 @@
+
+SQL Scripts for prod, bunch of questions
+
+Hi Guys,
+
+I have some questions according to this video:
+
+1. If I have github account and I create app to show off to my future employer, where should I put prod ddl sql scripts to do this as much professional as I can? In different github project?
+
+You can simply put them in a separate folder in your project. Similar to the "sql-scripts" directory that we use. You can use any directory name ... just don't place the files in the resources directory. Spring will scan for anything in the resources directory.
+
+2. By DBA do you mean Db Admin?
+
+Yes
+
+3. Now my apps runs sql scripts using schema.sql and data.sql in resources dir which hibernate runs automatically after application start. As I understand this is not recommended way too, right?
+
+I would avoid using this approach in Production environments. It is good for dev/test but you have to be very careful in Production environments. Like I mentioned in the video, if you make a configuration error, you couple affect your Production database tables.
+
+4. I created new app. I didn't use spring.jpa.hibernate.ddl-auto entry in application.properties but my app created tables despite this. Is there any default strategy for this mechanism? I didn't added any entry in application.properties besides db url, user and password. I didn't run any sql scripts too. Some of my java classes uses @Entity annotation
+
+https://www.udemy.com/course/spring-hibernate-tutorial/learn/lecture/36834516#questions/19868192
+
+5. Is it ok to use spring.jpa.hibernate.ddl-auto=validate in prod?
+Same answer as #3.
+
+In general, be careful when using auto-generation techniques. Be sure you thoroughly test this and understand the implications of the configuration and sql files.
+
+I showed this example of auto-generating because it is a FAQ. However, just beware. You don't want to be the person who deletes Production data.
+
