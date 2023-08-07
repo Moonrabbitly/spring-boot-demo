@@ -1,0 +1,15 @@
+In Spring Boot with JPA (Java Persistence API) and Hibernate, the spring.jpa.hibernate.ddl-auto property is used to configure how Hibernate generates or updates the database schema based on the JPA entity classes.
+
+Here are the common values for the spring.jpa.hibernate.ddl-auto property:
+
+none: This is the default value. With none, Hibernate won't perform any automatic schema creation, alteration, or dropping. You are responsible for managing the database schema yourself.
+
+create: With create, Hibernate will attempt to create the database schema when the application starts. However, if the schema already exists, it will drop and re-create it, potentially leading to data loss.
+
+create-drop: Similar to create, but in addition, Hibernate will drop the schema when the application shuts down.
+
+update: With update, Hibernate will try to update the schema based on the entity classes' definitions. It will add new tables, columns, or constraints as needed, but it won't drop or modify existing columns. Note that this process might not be entirely reliable for complex schema changes.
+
+validate: With validate, Hibernate will only validate the schema against the entity classes and report any inconsistencies. It won't make any changes to the schema.
+
+It's important to use the spring.jpa.hibernate.ddl-auto property with caution, especially in production environments. For production, it's generally recommended to set it to none or validate to ensure that the schema is already properly managed and avoid unintentional data loss.

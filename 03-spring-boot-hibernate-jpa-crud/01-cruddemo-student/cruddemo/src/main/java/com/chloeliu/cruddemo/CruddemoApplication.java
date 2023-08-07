@@ -23,13 +23,13 @@ public class CruddemoApplication {
 			System.out.println("JPA - Java Persistence API");
 			//createStudent(studentDAO);
 
-			createMultipleStudents(studentDAO);
+			//createMultipleStudents(studentDAO);
 
 			//readStudent(studentDAO);
 
 			//queryForStudentsByLastname(studentDAO);
 
-			//updateStudent(studentDAO);
+			updateStudent(studentDAO);
 
 			//deleteStudent(studentDAO);
 
@@ -49,7 +49,7 @@ public class CruddemoApplication {
 
 	private void deleteStudent(StudentDAO studentDAO) {
 
-		int studentId = 3;
+		int studentId = 13;
 		System.out.println("Deleting student id: " + studentId);
 		studentDAO.delete(studentId);
 	}
