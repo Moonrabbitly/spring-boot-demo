@@ -21,7 +21,7 @@ public class Student {
         this.firstName = firstName;
     }
 
-    public String getLastName(String lastName) {
+    public String getLastName() {
         return lastName;
     }
 
