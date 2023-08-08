@@ -23,13 +23,13 @@ public class CruddemoApplication {
 			System.out.println("JPA - Java Persistence API");
 			//createStudent(studentDAO);
 
-			//createMultipleStudents(studentDAO);
+			createMultipleStudents(studentDAO);
 
 			//readStudent(studentDAO);
 
 			//queryForStudentsByLastname(studentDAO);
 
-			updateStudent(studentDAO);
+			//updateStudent(studentDAO);
 
 			//deleteStudent(studentDAO);
 

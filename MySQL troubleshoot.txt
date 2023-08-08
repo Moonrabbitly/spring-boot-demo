@@ -1,0 +1,41 @@
+Just delete everything to start fresh, this include:
+
+C:\Program Files\MySQL               - the MySQL folder
+C:\ProgramData\MySQL                 - the MySQL folder
+C:\Users\cliu\AppData\Roaming\MySQL  - the MySQL folder
+
+Uninstall current MySQL Workbench
+
+Download:
+1. MySQL Workbench - This is the UI
+2. MySQL mysql-8.1.0-winx61
+
+Go to: C:\Program Files\MySQL\mysql-8.1.0-winx64\mysql-8.1.0-winx64\bin
+Open "mysql_configurator" application to so initial configure!! It will ask for first-time "root" password.
+
+Open "root" connection in MySQL Workbench
+
+Follow Chad's Lecture 64 to set up other users and other connections.
+
+Script 1:
+To create user, run:
+
+-- Drop user first if they exist
+DROP USER if exists 'springstudent'@'%' ;
+
+-- Now create user with prop privileges
+CREATE USER 'springstudent'@'%' IDENTIFIED BY 'springstudent';
+
+GRANT ALL PRIVILEGES ON * . * TO 'springstudent'@'%';
+
+Then close the root connection and add a new connection for "springstudent"
+
+
+
+Currently, there are 2 sets of users and passwords
+
+root
+root
+
+springstudent
+springstudent
