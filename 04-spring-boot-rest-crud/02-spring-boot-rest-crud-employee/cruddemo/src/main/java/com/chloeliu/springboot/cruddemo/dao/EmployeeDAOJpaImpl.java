@@ -16,7 +16,7 @@ public class EmployeeDAOJpaImpl implements EmployeeDAO{
     //set up constructor injection
     @Autowired
     public EmployeeDAOJpaImpl(EntityManager theEntityManager) {
-        theEntityManager = entityManager;
+        entityManager = theEntityManager;
     }
     @Override
     public List<Employee> findAll() {
