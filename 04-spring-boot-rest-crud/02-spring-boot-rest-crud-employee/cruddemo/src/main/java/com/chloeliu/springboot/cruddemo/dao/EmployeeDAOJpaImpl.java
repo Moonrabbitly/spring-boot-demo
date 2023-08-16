@@ -30,4 +30,33 @@ public class EmployeeDAOJpaImpl implements EmployeeDAO{
         return employees;
     }
 
+    //Note here we don't handle @Transactional at DAO layer, it will be handled in the Service layer
+    @Override
+    public Employee findById(int theId) {
+        //get employee
+        Employee theEmployee = entityManager.find(Employee.class, theId);
+
+        //return employee
+        return theEmployee;
+    }
+
+    @Override
+    public Employee save(Employee theEmployee) {
+        //save employee
+        //if id == 0, it will insert/save, else, it will update the current employee
+        Employee dbEmployee = entityManager.merge(theEmployee);
+
+        //return the dbEmployee
+        return dbEmployee;
+    }
+
+    @Override
+    public void deleteById(int theId) {
+        //find employee by id
+        Employee theEmployee = entityManager.find(Employee.class, theId);
+
+        //remove employee
+        entityManager.remove(theEmployee);
+    }
+
 }

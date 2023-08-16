@@ -1,0 +1,36 @@
+In Spring Framework, both the @Repository and @Service annotations are used to define the roles and responsibilities of different types of classes within the application. 
+These annotations are part of the Spring component scanning mechanism and are used to create Spring beans and manage them within the application context. 
+While they are often used interchangeably, there is a subtle difference in their intended usage and the semantic meaning they convey:
+
+@Repository Annotation:
+The @Repository annotation is typically used to annotate classes that are responsible for data access operations. 
+This includes interaction with databases, storage, and other data sources. 
+It's used to indicate that a class is acting as a data repository and is responsible for encapsulating data access logic. 
+This annotation also enables automatic translation of persistence-specific exceptions into Spring's DataAccessException hierarchy.
+Example:
+
+@Repository
+public class UserRepository {
+    // Data access methods and logic
+}
+
+@Service Annotation:
+The @Service annotation is used to annotate classes that provide some form of business logic or service. 
+These classes encapsulate business-related functionality and often serve as intermediaries between controllers and repositories. 
+The use of @Service helps to distinguish these classes from other components and adds a semantic meaning of being a service or business-related component.
+Example:
+
+@Service
+public class UserService {
+    // Business logic methods and interactions with repositories
+}
+
+In summary, while both @Repository and @Service annotations are used to define Spring beans and manage them within the application context, 
+the key distinction lies in their roles and responsibilities:
+
+@Repository is used for data access components, indicating that the class is responsible for interacting with data sources.
+@Service is used for business logic components, indicating that the class provides services or business-related functionality.
+
+It's important to note that while these annotations carry specific semantic meanings and are helpful for better code organization, 
+they do not have any functional impact on the behavior of the classes they annotate. 
+The choice of which annotation to use depends on how you want to communicate the purpose of the class in your application's architecture.
