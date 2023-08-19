@@ -1,0 +1,76 @@
+Service Layer - Best Practice
+
+* Best practice to apply transactional boundaries at the service layer
+* It is the service layer's responsibility to manage transaction boundaries
+* For implementation code
+  - Apply @Transactional on service methods
+  - Remove @Transactional on DAO methods if they already exist
+
+ Example:
+
+Employee Rest Controller <---> Employee Service <---> Employee DAO <---> database
+
+The @Transactional annotation is used in Java applications, especially those using frameworks like Spring, to define a transactional boundary for methods or classes. 
+A transaction is a sequence of one or more operations that are executed as a single unit of work, either all of which are completed or none of which are executed at all. 
+The @Transactional annotation provides a way to manage transactions declaratively, without explicitly writing transaction management code.
+
+Here's how it works:
+
+1. Method-Level Transactional Annotation:
+   You can annotate a method with @Transactional to indicate that all operations within that method should be treated as part of a transaction. 
+   If any operation within the method fails (throws an exception), the entire transaction will be rolled back.
+
+   Example:
+
+   import org.springframework.transaction.annotation.Transactional;
+
+   @Transactional
+   public void performTransaction() {
+       // Operations that participate in the transaction
+   }
+
+2. Class-Level Transactional Annotation:
+   You can also annotate a class with @Transactional to apply transaction management to all public methods within that class. 
+   This is useful when you want all methods of a service or component to be transactional.
+   
+   Example:
+   
+   import org.springframework.transaction.annotation.Transactional;
+
+   @Transactional
+   public class UserService {
+       public void saveUser(User user) {
+           // Transactional operations
+       }
+
+       public User getUserById(long id) {
+           // Transactional operations
+       }
+   }
+   
+   
+By default, a transaction is automatically committed when the annotated method completes successfully, and it's rolled back if an exception is thrown. 
+The annotation provides a powerful and convenient way to manage transactions without explicitly writing the boilerplate code for starting, committing, or rolling back transactions.
+
+It's important to note that for the @Transactional annotation to work, you need to have Spring's transaction management properly configured in your application context. 
+This usually involves enabling transaction management and configuring a transaction manager, which is responsible for handling database transactions. 
+In a Spring Boot application, this configuration can be done automatically by using @EnableTransactionManagement and setting up a data source.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
