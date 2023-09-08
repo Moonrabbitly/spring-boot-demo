@@ -1,0 +1,31 @@
+In Spring Boot, the @Configuration annotation is used to indicate that a class defines one or more Spring Bean definitions and the methods within that class can be used to configure the Spring application context. It is part of the Spring Framework's support for Java-based configuration, also known as JavaConfig.
+
+Here's how it works:
+
+You annotate a Java class with @Configuration to mark it as a configuration class.
+Inside this class, you define methods with the @Bean annotation. These methods return instances of beans that you want to register in the Spring application context.
+Here's an example:
+
+java
+Copy code
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class MyConfiguration {
+
+    @Bean
+    public MyBean myBean() {
+        return new MyBean();
+    }
+}
+In this example:
+
+The MyConfiguration class is annotated with @Configuration, indicating that it's a configuration class.
+The myBean() method is annotated with @Bean. It defines a bean named myBean and returns an instance of the MyBean class.
+When the Spring application context is created, it will scan for @Configuration classes and process them, registering the beans defined in these classes.
+Using @Configuration and @Bean allows you to define Spring beans and their configurations using pure Java code, without the need for XML configuration files. This approach is preferred in modern Spring applications, especially in Spring Boot projects, because it's more concise, type-safe, and easier to manage than XML-based configuration.
+
+
+
+
