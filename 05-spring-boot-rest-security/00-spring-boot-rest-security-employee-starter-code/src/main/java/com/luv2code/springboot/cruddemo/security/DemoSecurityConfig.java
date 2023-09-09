@@ -8,7 +8,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class DemoSecurityConfig {
@@ -16,6 +20,10 @@ public class DemoSecurityConfig {
     //{noop} means plain text password without encryption
     //Since we define our users here...
     //Spring Boot will NOT use the user/pass from the application.properties file
+
+    //In Lec148, Chad introduced JDBC, users and roles (authorities) will be built in MySQL
+    //so, we comment out the hard-coded user inputs
+    /*
     @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
 
@@ -39,6 +47,7 @@ public class DemoSecurityConfig {
 
         return new InMemoryUserDetailsManager(john, mary, susan);
     }
+    */
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -61,6 +70,14 @@ public class DemoSecurityConfig {
 
         return http.build();
     }
+
+    // add support for JDBC ... no more hardcoded users
+    // before here, go to MySQL to run a script to create 'user' and 'role' tables
+    @Bean
+    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+        return new JdbcUserDetailsManager(dataSource);
+    }
+
 }
 
 
