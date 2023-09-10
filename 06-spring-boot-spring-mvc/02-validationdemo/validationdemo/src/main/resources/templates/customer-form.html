@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+
+xmlns:th: This is an XML namespace declaration.
+It defines a namespace alias "th" associated with the "http://thymeleaf.org" namespace URI.
+Thymeleaf is a popular server-side Java templating engine often used in web applications to generate dynamic HTML content.
+The xmlns attribute specifies the namespace URI ("http://thymeleaf.org").
+The th part after xmlns: is an alias that allows you to reference elements and attributes from the Thymeleaf namespace
+within your HTML document. This alias is often used to include Thymeleaf-specific attributes and expressions in HTML templates.
+
+-->
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Registration Form</title>
+
+    <style>
+        .error {color:red}
+    </style>
+</head>
+
+<body>
+
+<i>Fill out the form. Asterisk (*) means required.</i>
+<br><br>
+<!--
+    th:action="@{/processForm}"  where to submit form data
+    th:object="customer"         model attribute name
+    method="POST"                send using HTTP POST
+
+    th:field attribute is set to "*{firstName}",
+    indicating that this field is bound to the "firstName" property of the "customer" object.
+-->
+<form th:action="@{/processForm}" th:object="${customer}" method="POST">
+
+    First name: <input type="text" th:field="*{firstName}" />
+    <br><br>
+    Last name (*): <input type="text" th:field="*{lastName}" />
+
+    <!--Add error message (if present)-->
+    <!--
+        class="error": This sets the CSS class of the <span> element to "error."
+        This class can be used for styling purposes to indicate that there is an error associated with the "lastName" field.
+        We can make it fancy by adding external css file,
+        but for this example we just create our css style for "error" in the same html file (see) above
+    -->
+    <span th:if="${#fields.hasErrors('lastName')}"
+          th:errors="*{lastName}"
+          class="error"></span>
+
+    <br><br>
+
+    <input type="submit" value="Submit" />
+
+</form>
+
+</body>
+
+</html>

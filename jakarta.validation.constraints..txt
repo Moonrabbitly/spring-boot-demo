@@ -1,0 +1,26 @@
+The jakarta.validation.constraints.* package is part of the Jakarta Bean Validation API, which is used to define and enforce validation rules on Java objects, particularly in enterprise applications. This API allows developers to specify constraints and rules on object properties to ensure that data meets certain criteria and is valid.
+
+The jakarta.validation.constraints.* package contains various annotations that can be used to declare constraints on Java class fields or method parameters. These annotations help define what constitutes valid data for those fields or parameters. Some commonly used annotations in this package include:
+
+@NotNull: Indicates that a field or parameter must not be null.
+@NotEmpty: Indicates that a field or parameter must not be empty (for strings, collections, maps, arrays, etc.).
+@NotBlank: Indicates that a string field or parameter must not be blank (i.e., not empty and not just whitespace).
+@Size: Specifies the minimum and maximum size (length) constraints for a field or parameter.
+@Min and @Max: Specify the minimum and maximum numeric values allowed for a field or parameter.
+@Pattern: Specifies a regular expression pattern that a string field or parameter must match.
+@Email: Validates that a string field or parameter is a valid email address.
+These annotations, along with others in the package, allow developers to express constraints and rules for data validation declaratively, which means that validation rules are defined using annotations rather than writing custom validation code. Jakarta Bean Validation then provides a runtime framework that enforces these constraints and validates data against them.
+
+Here's an example of how the @NotNull annotation is used to specify that a field must not be null:
+
+java
+Copy code
+import jakarta.validation.constraints.NotNull;
+
+public class Person {
+    @NotNull
+    private String name;
+
+    // Getter and setter methods for 'name'
+}
+In this example, the name field is annotated with @NotNull, indicating that it should not be null. If an attempt is made to set name to null, validation will fail, and an exception or error will be raised based on the Jakarta Bean Validation implementation used in the application.
