@@ -1,0 +1,47 @@
+https://www.netjstech.com/2018/08/difference-between-controller-restcontroller-annotation-spring.html
+Difference between @Controller and @RestController
+
+@Controller annotation in Spring
+In a Spring web MVC project generally a view technology like JSP, Freemarker, Thymeleaf is used to render the view. In that case from a Controller method, model is created and a logical view name is returned which is mapped to a view using the configured ViewResolver.
+
+You may also return the object itself from the Controller method, in that case object data is written to the HTTP response body as JSON/XML. For that you need to use the annotation @ResponseBody explicitly which indicates a method return value should be bound to the web response body.
+
+@RestController annotation in Spring
+With RESTful web services interchange of data happens mostly as JSON or XML. In case you are writing a Spring REST service you will have to use @ResponseBody annotation along with the @Controller annotation to indicate that the returned object has to be serialized to the response body.
+
+Unlike Spring Web MVC where mostly controller methods return ModelAndView, with Spring REST services it is the object itself which is returned. So Spring framework from version 4 has introduced a convenience annotation @RestController which combines both @Controller and @ResponseBody annotations. In a controller class annotated with @RestController all the @RequestMapping methods assume @ResponseBody semantics by default.
+
+
+Following two examples are same in Spring MVC:
+
+//Example 1:
+
+@Controller
+@ResponseBody
+public class MessageController {
+ ..
+ ..
+}
+
+//Example 2:
+
+@RestController
+public class MessageController {
+ ..
+ ..
+}
+
+Note that when @ResponseBody annotation is used on a method, return is serialized to the response body through an HttpMessageConverter.
+
+Concrete implementations of the HttpMessageConverter for the main media (mime) types are provided in the Spring framework and are registered by default with the RestTemplate on the client-side and with RequestMethodHandlerAdapter on the server-side. Appropriate implementation of the HttpMessageConverter based on the mime type is chosen for converting the object.
+
+@Controller Vs @RestController in Spring
+
+1- @Controller annotation is used in Spring Web MVC project where model data is rendered using a view.
+@RestController is used in RESTful web services where return value (which is mostly an object) is bound to the response body.
+
+2- With classes annotated with @Controller annotation if you want return value to be converted through HttpMessageConverters and written to the response you will have to annotate the class with an extra annotation @ResponseBody or you can annotate individual handler methods with in the controller class with @ResponseBody annotation.
+@RestController annotation is the combination of @Controller + @ResponseBody. With @RestController annotation it is the default behavior that the result will be written to the response body.
+
+3- With @Controller annotation you still have that control that you can annotate individual methods with @ResponseBody annotation.
+With @RestController annotation all the handler methods of the class write their result to the response body.
